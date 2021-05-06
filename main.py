@@ -73,7 +73,7 @@ class ObjectFinder:
         self.t_vector = None
         self.r_matrix_inverse = None
 
-    def find_objects(self, np_image, world_z=0): #world_z is height from table in mm
+    def find_objects(self, np_image, world_z=0, debug=False): #world_z is height from table in mm
         timer = time.time()
 
         if len(self.reference_image) == 0:
@@ -87,8 +87,9 @@ class ObjectFinder:
         img_debug = aruco.drawDetectedMarkers(np_image, detected_corners, detected_ids, borderColor=(0, 255, 0))
         img_debug = aruco.drawDetectedMarkers(img_debug, rejected_image_points, borderColor=(0, 0, 255))
         img_small = cv2.resize(img_debug, (1536, 864))
-        cv2.imshow("detected_corners", img_small)
-        cv2.waitKey()
+        if debug:
+            cv2.imshow("detected_corners", img_small)
+            cv2.waitKey()
 
         #removing unnecessary dimensions from arrays
         detected_corners = np.array(detected_corners)
