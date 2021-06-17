@@ -20,10 +20,10 @@ class Marker:
 
 class Item:
     def __init__(self):
-        self.name = None
-        self.id = None
-        self.center = None
-        self.orientation = None
+        self.name = None #name in string format
+        self.id = None # item id
+        self.center = None #center in mm in robot's frame
+        self.orientation = None # angle in rad
         self.id_to_name_dict = {10: "black_top_normal",
                            11: "black_top_flipped",
                            20: "black_bottom_normal",
@@ -192,7 +192,7 @@ if __name__ == "__main__":
         _, img = camera.read()
     else:
         img = cv2.imread("test.jpg")
-    img_undistort = cv2.undistort(img, object_finder.default_intrinsic_matrix, object_finder.distortion)
+    # img_undistort = cv2.undistort(img, object_finder.default_intrinsic_matrix, object_finder.distortion)
     # cv2.imshow("cap", img)
     # cv2.imshow("undistorted", img_undistort)
     # cv2.waitKey()
